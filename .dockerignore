@@ -3,6 +3,6 @@ docker-compose.yaml
 hass-actron.service
 scripts/
 *.md
-hass-actron
-hass-actron-*
+/hass-actron
+/hass-actron-*
 *.log
