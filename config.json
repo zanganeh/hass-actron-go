@@ -1,0 +1,53 @@
+{
+  "name": "Actron Air Conditioner (Go)",
+  "version": "1.0.0",
+  "slug": "hass-actron-go",
+  "description": "Bridges an Actron Air Conditioner to Home Assistant via MQTT. Go rewrite — low memory (<25MB RSS).",
+  "url": "https://github.com/zanganeh/hass-actron-go",
+  "startup": "application",
+  "boot": "auto",
+  "image": "ghcr.io/zanganeh/hass-actron-go-{arch}",
+  "arch": [
+    "amd64",
+    "aarch64",
+    "armhf",
+    "armv7",
+    "i386"
+  ],
+  "options": {
+    "MQTTUser": "",
+    "MQTTPassword": "",
+    "MQTTBroker": "core-mosquitto",
+    "MQTTLogs": true,
+    "MQTTTLS": false,
+    "ForwardToOriginalWebService": false,
+    "RegisterZoneTemperatures": false,
+    "Zones": [
+      { "Name": "Zone 1", "Id": 1 },
+      { "Name": "Zone 2", "Id": 2 }
+    ]
+  },
+  "schema": {
+    "MQTTUser": "str?",
+    "MQTTPassword": "str?",
+    "MQTTBroker": "str",
+    "MQTTLogs": "bool?",
+    "MQTTTLS": "bool?",
+    "MultipleUnits": ["str?"],
+    "RegisterZoneTemperatures": "bool?",
+    "ForwardToOriginalWebService": "bool?",
+    "Zones": [
+      {
+        "Name": "str",
+        "Id": "int",
+        "Unit": "str?"
+      }
+    ]
+  },
+  "ports": {
+    "180/tcp": 180
+  },
+  "ports_description": {
+    "180/tcp": "Receives HTTP traffic from the Actron Connect Wi-Fi module."
+  }
+}

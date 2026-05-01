@@ -1,0 +1,14 @@
+{
+  "MQTTBroker": "localhost",
+  "MQTTUser": "",
+  "MQTTPassword": "",
+  "MQTTLogs": true,
+  "MQTTTLS": false,
+  "RegisterZoneTemperatures": true,
+  "ForwardToOriginalWebService": false,
+  "Zones": [
+    { "Name": "Bedroom",   "Id": 1, "Unit": "Default" },
+    { "Name": "Living",    "Id": 2, "Unit": "Default" },
+    { "Name": "Kitchen",   "Id": 3, "Unit": "Default" }
+  ]
+}

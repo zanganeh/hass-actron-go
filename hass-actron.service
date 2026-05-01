@@ -1,0 +1,13 @@
+[Unit]
+Description=hass-actron MQTT bridge
+After=network.target mosquitto.service
+
+[Service]
+ExecStart=/usr/local/bin/hass-actron
+Restart=always
+RestartSec=5
+Environment=GOMEMLIMIT=50MiB
+Environment=GOMAXPROCS=2
+
+[Install]
+WantedBy=multi-user.target

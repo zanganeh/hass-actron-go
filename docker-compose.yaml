@@ -1,0 +1,28 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./testdata/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    restart: unless-stopped
+
+  hass-actron:
+    build:
+      context: .
+      args:
+        BUILD_FROM: alpine:3.19
+        TARGETOS: linux
+        TARGETARCH: amd64
+        TARGETVARIANT: ""
+    command: ["/usr/bin/hass-actron", "-config", "/data/options.json"]
+    ports:
+      - "180:180"
+    volumes:
+      - ./testdata/options.json:/data/options.json:ro
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
+    environment:
+      - GOMEMLIMIT=50MiB

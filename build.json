@@ -1,0 +1,11 @@
+{
+  "squash": false,
+  "build_from": {
+    "amd64":   "ghcr.io/home-assistant/amd64-base-alpine:latest",
+    "aarch64": "ghcr.io/home-assistant/aarch64-base-alpine:latest",
+    "armhf":   "ghcr.io/home-assistant/armhf-base-alpine:latest",
+    "armv7":   "ghcr.io/home-assistant/armv7-base-alpine:latest",
+    "i386":    "ghcr.io/home-assistant/i386-base-alpine:latest"
+  },
+  "args": {}
+}
