@@ -1,8 +1,7 @@
 ARG BUILD_FROM=alpine:3.19
-ARG TARGETARCH
-ARG TARGETVARIANT
+ARG BUILDPLATFORM=linux/amd64
 
-# Build stage — compiles for the target arch
+# Build stage — always runs on native (amd64); cross-compiles via GOOS/GOARCH
 FROM --platform=${BUILDPLATFORM} golang:1.22-alpine AS builder
 
 WORKDIR /build
@@ -11,11 +10,9 @@ RUN go mod download
 
 COPY . .
 
-# Build static binary for the target platform
-ARG TARGETOS
-ARG TARGETARCH
-ARG TARGETVARIANT
-RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} GOARM=${TARGETVARIANT#v} \
+ARG TARGETARCH=amd64
+ARG TARGETVARIANT=""
+RUN GOOS=linux GOARCH=${TARGETARCH} GOARM=${TARGETVARIANT} \
     CGO_ENABLED=0 \
     go build -ldflags="-s -w" -trimpath \
     -o hass-actron ./cmd/hass-actron

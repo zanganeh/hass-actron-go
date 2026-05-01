@@ -22,14 +22,24 @@ jobs:
         include:
           - arch: amd64
             platform: linux/amd64
+            goarch: amd64
+            goarm: ""
           - arch: aarch64
             platform: linux/arm64
+            goarch: arm64
+            goarm: ""
           - arch: armv7
             platform: linux/arm/v7
+            goarch: arm
+            goarm: "7"
           - arch: armhf
             platform: linux/arm/v6
+            goarch: arm
+            goarm: "6"
           - arch: i386
             platform: linux/386
+            goarch: "386"
+            goarm: ""
 
     steps:
       - uses: actions/checkout@v4
@@ -56,6 +66,9 @@ jobs:
           context: .
           platforms: ${{ matrix.platform }}
           push: true
+          build-args: |
+            TARGETARCH=${{ matrix.goarch }}
+            TARGETVARIANT=${{ matrix.goarm }}
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository_owner }}/hass-actron-go-${{ matrix.arch }}:${{ env.VERSION }}
             ${{ env.REGISTRY }}/${{ github.repository_owner }}/hass-actron-go-${{ matrix.arch }}:latest
