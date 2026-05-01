@@ -56,8 +56,6 @@ jobs:
           context: .
           platforms: ${{ matrix.platform }}
           push: true
-          build-args: |
-            BUILD_FROM=ghcr.io/home-assistant/${{ matrix.arch }}-base-alpine:latest
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository_owner }}/hass-actron-go-${{ matrix.arch }}:${{ env.VERSION }}
             ${{ env.REGISTRY }}/${{ github.repository_owner }}/hass-actron-go-${{ matrix.arch }}:latest
