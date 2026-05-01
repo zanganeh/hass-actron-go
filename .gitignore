@@ -1,3 +1,4 @@
 /hass-actron
 /hass-actron-*
 *.log
+testdata/options-live.json
